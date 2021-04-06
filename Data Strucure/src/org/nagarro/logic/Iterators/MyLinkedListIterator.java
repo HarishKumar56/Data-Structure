@@ -1,14 +1,13 @@
 package org.nagarro.logic.Iterators;
 
 import java.util.Iterator;
-
-import org.nagarro.logic.MyLinkedListImpl;
+import org.nagarro.logic.nodes.LinkedListNode;
 
 public class MyLinkedListIterator<T> implements Iterator<T> {
 	
-	MyLinkedListImpl<T>.LinkedListNode node;
+	LinkedListNode<T> node;
 
-	public MyLinkedListIterator(MyLinkedListImpl<T>.LinkedListNode node) {
+	public MyLinkedListIterator(LinkedListNode<T> node) {
 		super();
 		this.node = node;
 	}

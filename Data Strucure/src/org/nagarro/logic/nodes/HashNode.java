@@ -5,6 +5,14 @@ public class HashNode<K , V> {
 	private K key;
 	private V value;
 	private HashNode<K , V> nextNode;
+	
+	public HashNode() {
+		super();
+		// TODO Auto-generated constructor stub
+		nextNode = null;
+		key = null;
+		value = null;
+	}
 	public HashNode(K key, V value) {
 		super();
 		this.key = key;

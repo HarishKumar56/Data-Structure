@@ -4,11 +4,12 @@ import java.util.Iterator;
 
 import org.nagarro.logic.Iterators.MyLinkedListIterator;
 import org.nagarro.logic.interfaces.MyLinkedList;
+import org.nagarro.logic.nodes.LinkedListNode;
 
 public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 	
-	private LinkedListNode head;
-	private LinkedListNode tail;
+	private LinkedListNode<T> head;
+	private LinkedListNode<T> tail;
 	private int size;
 	
 	public MyLinkedListImpl() {
@@ -18,41 +19,10 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 	}
 	
 	public MyLinkedListImpl(T data) {
-		LinkedListNode node = new LinkedListNode(data);
+		LinkedListNode<T> node = new LinkedListNode<T>(data);
 		this.head = node;
 		this.tail = node;
 		this.size = 1;
-	}
-	
-	public class LinkedListNode {
-		
-		private LinkedListNode nextNode;
-		private LinkedListNode prevNode;
-		private T data ;
-		public LinkedListNode(T data) {
-			this.nextNode = null;
-			this.data = data;
-			this.prevNode = null;
-		}
-		public LinkedListNode getNextNode() {
-			return nextNode;
-		}
-		public void setNextNode(LinkedListNode nextNode) {
-			this.nextNode = nextNode;
-		}
-		public LinkedListNode getPrevNode() {
-			return prevNode;
-		}
-		public void setPrevNode(LinkedListNode prevNode) {
-			this.prevNode = prevNode;
-		}
-		public T getData() {
-			return data;
-		}
-		public void setData(T data) {
-			this.data = data;
-		}
-		
 	}
 
 	@Override
@@ -65,13 +35,13 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 	@Override
 	public boolean add(T data) {
 		if(size == 0) {
-			LinkedListNode node = new LinkedListNode(data);
+			LinkedListNode<T> node = new LinkedListNode<T>(data);
 			this.head = node;
 			this.tail = node;
 			this.size++;			
 		}
 		else {
-			LinkedListNode node = new LinkedListNode(data);
+			LinkedListNode<T> node = new LinkedListNode<T>(data);
 			node.setPrevNode(tail);
 			tail.setNextNode(node);
 			tail = node;
@@ -86,7 +56,7 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 		if(size == 0) {
 			throw new IllegalStateException("Linked List is Empty");
 		}
-		LinkedListNode curr = head;
+		LinkedListNode<T> curr = head;
 		head = curr.getNextNode();
 		if(head !=null) {
 			head.setPrevNode(null);
@@ -101,8 +71,8 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 			throw new IllegalStateException("Linked List is Empty");
 		}
 		
-		LinkedListNode curr = head;
-		LinkedListNode temp = null;
+		LinkedListNode<T> curr = head;
+		LinkedListNode<T> temp = null;
 		
 		while(curr != null) {
 			temp = curr.getPrevNode();
@@ -127,7 +97,7 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 		if(size == 0) {
 			throw new IllegalStateException("Linked List is Empty");
 		}
-		LinkedListNode curr = head;
+		LinkedListNode<T> curr = head;
 		System.out.print(curr.getData());
 		while(curr.getNextNode() != null) {
 			System.out.print("--->"+curr.getNextNode().getData());
@@ -140,8 +110,8 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 		if(size ==0) {
 			throw new IllegalStateException("Linked List is Empty");
 		}
-		LinkedListNode curr = head;
-		LinkedListNode currJumped = head;
+		LinkedListNode<T> curr = head;
+		LinkedListNode<T> currJumped = head;
 		while(currJumped.getNextNode()!= null && currJumped.getNextNode().getNextNode()!=null) {
 			curr = curr.getNextNode();
 			currJumped = currJumped.getNextNode().getNextNode();
@@ -159,13 +129,13 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 		if(position ==0) {
 			return addFirst(data);
 		}
-		LinkedListNode curr = head;
+		LinkedListNode<T> curr = head;
 		while(position >0) {
 			curr = curr.getNextNode();
 			position--;
 		}
-		LinkedListNode newNode = new LinkedListNode(data);
-		LinkedListNode prev = curr.getPrevNode();
+		LinkedListNode<T> newNode = new LinkedListNode<T>(data);
+		LinkedListNode<T> prev = curr.getPrevNode();
 		prev.setNextNode(newNode);
 		newNode.setPrevNode(prev);
 		newNode.setNextNode(curr);
@@ -175,7 +145,7 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 	}
 	
 	public boolean addFirst(T data) {
-		LinkedListNode newNode = new LinkedListNode(data);
+		LinkedListNode<T> newNode = new LinkedListNode<T>(data);
 		if(size == 0) {
 			this.head = newNode;
 			this.tail = newNode;
@@ -195,7 +165,7 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 		if(size == 0) {
 			throw new IllegalStateException("Linked List is Empty");
 		}
-		LinkedListNode curr = tail;
+		LinkedListNode<T> curr = tail;
 		tail = tail.getPrevNode();
 		if(tail !=null) {
 			tail.setNextNode(null);
@@ -214,13 +184,13 @@ public class MyLinkedListImpl<T> implements MyLinkedList<T> {
 		if(position == size()) {
 			return removeLast();
 		}
-		LinkedListNode curr = head;
+		LinkedListNode<T> curr = head;
 		while(position >0) {
 			curr = curr.getNextNode();
 			position--;
 		}
-		LinkedListNode prev = curr.getPrevNode();
-		LinkedListNode next = curr.getNextNode();
+		LinkedListNode<T> prev = curr.getPrevNode();
+		LinkedListNode<T> next = curr.getNextNode();
 		prev.setNextNode(next);
 		next.setPrevNode(prev);
 		size--;

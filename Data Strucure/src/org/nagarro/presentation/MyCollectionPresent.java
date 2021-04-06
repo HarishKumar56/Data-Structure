@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.nagarro.logic.MyHashMap;
 import org.nagarro.logic.MyLinkedListImpl;
 import org.nagarro.logic.MyQueueImpl;
 import org.nagarro.logic.MyStackImpl;
+import org.nagarro.logic.interfaces.MyHash;
 import org.nagarro.logic.interfaces.MyLinkedList;
 import org.nagarro.logic.interfaces.MyQueue;
 import org.nagarro.logic.interfaces.MyStack;
+import org.nagarro.logic.nodes.HashNode;
 
 public class MyCollectionPresent {
 	
@@ -17,6 +20,7 @@ public class MyCollectionPresent {
 	private MyLinkedList<Object> myList;
 	private MyStack<Object> myStack;
 	private MyQueue<Object> myQueue;
+	MyHash<Object, Object> myHash;
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		
@@ -44,6 +48,10 @@ public class MyCollectionPresent {
 					myQueue = new MyQueueImpl<>();
 					queueHandler();
 					break;
+				case 4:
+					myHash = new MyHashMap<>();
+					hashHandler();
+					break;
 				case 7:
 					return;
 				default:
@@ -62,15 +70,6 @@ public class MyCollectionPresent {
 		}
 	}
 
-	private void linkListMessageHandler() {
-		System.out.println("----------------------------------------------------------------------------------------");
-		System.out.println("Select the Opation number from the following Operations");
-		System.out.println("1.  Insert\t\t2.  Insert at Position\t3.  Delete");
-		System.out.println("4.  Delete at Position\t5.  Center\t\t6.  Reverse");
-		System.out.println("7.  Size\t\t8.  Iterator\t\t9.  Traverse");
-		System.out.println("10. Exit");
-		System.out.println("----------------------------------------------------------------------------------------");
-	}
 	
 	private void queueMessageHandler() {
 		System.out.println("----------------------------------------------------------------------------------------");
@@ -84,10 +83,88 @@ public class MyCollectionPresent {
 	private void stackMessageHandler() {
 		System.out.println("----------------------------------------------------------------------------------------");
 		System.out.println("Select the Opation number from the following Operations");
-		System.out.println("1.  Push\t\t2.  Pop\t\t3.  Peek");
+		System.out.println("1.  Push\t\t2.  Pop\t\t\t3.  Peek");
 		System.out.println("4.  Contains\t\t5.  Reverse\t\t6.  Size");
 		System.out.println("7.  Iterator\t\t8.  Traverse\t\t9.  Exit");
 		System.out.println("----------------------------------------------------------------------------------------");
+	}
+	
+	private void hashMessageHandler() {
+		System.out.println("----------------------------------------------------------------------------------------");
+		System.out.println("Select the Opation number from the following Operations");
+		System.out.println("1.  Put\t\t\t2.  Remove\t\t3.  get");
+		System.out.println("4.  Contains\t\t5.  Traverse\t\t6.  Size");
+		System.out.println("7.  Iterator\t\t8.  Exit");
+		System.out.println("----------------------------------------------------------------------------------------");
+	}
+	
+	private void hashHandler() {
+		try {
+			while(true) {
+				hashMessageHandler();
+				int choice = Integer.parseInt(br.readLine());
+				Object key , value;
+				switch (choice) {
+				case 1:
+					System.out.print("Enter the Key : ");
+					key = br.readLine();
+					System.out.print("Enter the Value : ");
+					value = br.readLine();	
+					myHash.put(key, value);					
+					break;
+				case 2:
+					System.out.println("Enter the Key to Delete: ");	
+					key = br.readLine();
+					myHash.remove(key);
+					break;
+				case 3:
+					System.out.println("Enter the Key to get Value: ");	
+					key = br.readLine();
+					value = myHash.get(key);
+					System.out.println("Value of Key ("+key+") : "+value);	
+					break;
+				case 6:
+					System.out.println("Size of Hash is : "+myHash.size());				
+					break;
+				case 5:
+					myHash.traverse();				
+					break;
+				case 7:
+					System.out.println("Iterator on Hash :");	
+					for(HashNode<Object, Object> val : myHash) {
+						System.out.println(val.getKey()+" : "+val.getValue());
+					}
+					break;
+				
+				case 8:
+					return;
+				case 4:
+					System.out.print("Enter the Key to check  :");	
+					if(myHash.contains(br.readLine())) {
+						System.out.println("Element Exists in the Hash");	
+					}
+					else {
+						System.out.println("Element does not Exists in the Hash");
+					}
+					break;
+
+				default:
+					System.out.println("Enter the Valid Choice");
+					hashHandler();
+					return;
+				}
+			}
+		} catch (NumberFormatException | IOException e) {
+			System.out.println("Enter the Valid Integer Value");
+			hashHandler();	
+			return;
+		}
+		catch(IllegalStateException ex) {
+			System.out.println(ex.getMessage());
+			hashHandler();
+			return;
+			
+		}
 	}
 
 	private void queueHandler() {
@@ -296,6 +373,7 @@ public class MyCollectionPresent {
 		System.out.println("1.  LinkedList");
 		System.out.println("2.  Stack");
 		System.out.println("3.  Queue");
+		System.out.println("4.  Hash");
 		System.out.println("7.  Exit");
 		System.out.println("----------------------------------------------------------------------------------------");
 		
