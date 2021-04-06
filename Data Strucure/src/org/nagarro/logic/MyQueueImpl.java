@@ -7,14 +7,15 @@ import org.nagarro.logic.interfaces.MyQueue;
 public class MyQueueImpl<T> implements MyQueue<T> {
 
 	private MyLinkedListImpl<T> myQueue;
+
 	public MyQueueImpl() {
 		myQueue = new MyLinkedListImpl<>();
-		
+
 	}
-	
+
 	public MyQueueImpl(T data) {
 		myQueue = new MyLinkedListImpl<>(data);
-		
+
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class MyQueueImpl<T> implements MyQueue<T> {
 
 	@Override
 	public T dequeue() {
-		if(myQueue.size()<=0) {
+		if (myQueue.size() <= 0) {
 			throw new IllegalStateException("Queue is Emptpy");
 		}
 		return myQueue.remove();
@@ -37,7 +38,7 @@ public class MyQueueImpl<T> implements MyQueue<T> {
 
 	@Override
 	public T peek() {
-		if(myQueue.size()<=0) {
+		if (myQueue.size() <= 0) {
 			throw new IllegalStateException("Queue is Emptpy");
 		}
 		return myQueue.getHead();
@@ -45,8 +46,8 @@ public class MyQueueImpl<T> implements MyQueue<T> {
 
 	@Override
 	public boolean contains(T data) {
-		for(T val : myQueue) {
-			if(data.equals(val)) {
+		for (T val : myQueue) {
+			if (data.equals(val)) {
 				return true;
 			}
 		}
@@ -60,7 +61,7 @@ public class MyQueueImpl<T> implements MyQueue<T> {
 
 	@Override
 	public void reverse() {
-		if(myQueue.size()<=0) {
+		if (myQueue.size() <= 0) {
 			throw new IllegalStateException("Queue is Emptpy");
 		}
 		myQueue.reverse();
@@ -68,7 +69,7 @@ public class MyQueueImpl<T> implements MyQueue<T> {
 
 	@Override
 	public void traverse() {
-		if(myQueue.size()<=0) {
+		if (myQueue.size() <= 0) {
 			throw new IllegalStateException("Queue is Emptpy");
 		}
 		myQueue.traverse();
@@ -81,7 +82,7 @@ public class MyQueueImpl<T> implements MyQueue<T> {
 
 	@Override
 	public T remove() {
-		if(myQueue.size()<=0) {
+		if (myQueue.size() <= 0) {
 			throw new IllegalStateException("Queue is Emptpy");
 		}
 		return myQueue.remove();

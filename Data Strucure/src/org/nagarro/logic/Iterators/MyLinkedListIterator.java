@@ -4,7 +4,7 @@ import java.util.Iterator;
 import org.nagarro.logic.nodes.LinkedListNode;
 
 public class MyLinkedListIterator<T> implements Iterator<T> {
-	
+
 	LinkedListNode<T> node;
 
 	public MyLinkedListIterator(LinkedListNode<T> node) {
@@ -14,7 +14,7 @@ public class MyLinkedListIterator<T> implements Iterator<T> {
 
 	@Override
 	public boolean hasNext() {
-		if(node == null) {
+		if (node == null) {
 			return false;
 		}
 		return true;

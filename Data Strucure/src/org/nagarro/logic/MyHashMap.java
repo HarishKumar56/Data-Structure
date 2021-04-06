@@ -92,8 +92,7 @@ public class MyHashMap<K, V> implements MyHash<K, V> {
 			} else {
 				myHashMap[(int) hashKey] = null;
 			}
-		}
-		else {
+		} else {
 			throw new IllegalStateException("Hash Does Not Contain this Key");
 		}
 
