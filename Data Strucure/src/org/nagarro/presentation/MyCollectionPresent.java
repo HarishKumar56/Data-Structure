@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import org.nagarro.presentation.handler.HashHandler;
 import org.nagarro.presentation.handler.LinkedListHandler;
+import org.nagarro.presentation.handler.PriorityQueueHandler;
 import org.nagarro.presentation.handler.QueueHandler;
 import org.nagarro.presentation.handler.StackHandler;
 import org.nagarro.presentation.handler.interfaces.UserHandler;
@@ -44,6 +45,10 @@ public class MyCollectionPresent {
 					userHandler = new HashHandler();
 					userHandler.handler();
 					break;
+				case 5:
+					userHandler = new PriorityQueueHandler();
+					userHandler.handler();
+					break;
 				case 7:
 					return;
 				default:
@@ -67,6 +72,7 @@ public class MyCollectionPresent {
 		System.out.println("2.  Stack");
 		System.out.println("3.  Queue");
 		System.out.println("4.  Hash");
+		System.out.println("5.  Priority Queue");
 		System.out.println("7.  Exit");
 		System.out.println("----------------------------------------------------------------------------------------");
 
