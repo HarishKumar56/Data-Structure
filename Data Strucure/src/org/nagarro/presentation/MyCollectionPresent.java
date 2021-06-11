@@ -3,6 +3,8 @@ package org.nagarro.presentation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import org.nagarro.presentation.handler.GenericTreeHandler;
 import org.nagarro.presentation.handler.HashHandler;
 import org.nagarro.presentation.handler.LinkedListHandler;
 import org.nagarro.presentation.handler.PriorityQueueHandler;
@@ -49,6 +51,10 @@ public class MyCollectionPresent {
 					userHandler = new PriorityQueueHandler();
 					userHandler.handler();
 					break;
+				case 6:
+					userHandler = new GenericTreeHandler();
+					userHandler.handler();
+					break;
 				case 7:
 					return;
 				default:
@@ -73,6 +79,7 @@ public class MyCollectionPresent {
 		System.out.println("3.  Queue");
 		System.out.println("4.  Hash");
 		System.out.println("5.  Priority Queue");
+		System.out.println("6.  N-Child Tree");
 		System.out.println("7.  Exit");
 		System.out.println("----------------------------------------------------------------------------------------");
 

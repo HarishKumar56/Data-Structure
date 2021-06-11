@@ -101,7 +101,7 @@ public class MyPriorityQueue<T extends Comparable<T>> implements MyQueue<T> {
 			return;
 		}
 		traverseMin(node.getlChild());
-		System.out.print(node.getData() + "==>");
+		System.out.print(node.getData() + "   ");
 		traverseMin(node.getrChild());
 
 	}
@@ -111,7 +111,7 @@ public class MyPriorityQueue<T extends Comparable<T>> implements MyQueue<T> {
 			return;
 		}
 		traverseMax(node.getrChild());
-		System.out.print(node.getData() + "==>");
+		System.out.print(node.getData() + "   ");
 		traverseMax(node.getlChild());
 
 	}

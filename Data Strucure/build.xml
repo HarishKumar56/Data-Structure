@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project name="DataStructures" basedir="." default="build">
+   <property name="src.dir" value="src"/>
+   <property name="web.dir" value="target"/>
+   <property name="build.dir" value="${web.dir}/classes"/>
+   <property name="name" value="DataStructures"/>
+   
+   <path id="master-classpath">
+      <fileset dir="${web.dir}/lib">
+         <include name="*.jar"/>
+      </fileset>
+      <pathelement path="${build.dir}"/>
+   </path>
+
+   <target name="build" description="Compile source tree java files">
+      <mkdir dir="${build.dir}"/>
+      <javac destdir="${build.dir}" source="1.8" target="1.8">
+         <src path="${src.dir}"/>
+         <classpath refid="master-classpath"/>
+      </javac>
+
+   </target>
+   
+   <target name="clean" description="Clean output directories">
+      <delete>
+         <fileset dir="${build.dir}">
+            <include name="**/*.class"/>
+         </fileset>
+      </delete>
+   </target>
+	
+	<target name="build-jar">
+		<jar destfile="${web.dir}/lib/DataStructures.jar"
+			   basedir="${build.dir}"
+			includes="**/*.class"
+			/>
+		<manifest file = "MANIFEST.MF">
+		        <attribute name = "Main-Class" value = "org.nagarro.presentation.MyCollectionPresent"/>
+		        <attribute name = "Class-Path" value = "."/>
+		</manifest>
+	</target>
+	
+	
+	
+</project>
